@@ -14,7 +14,7 @@ Upon loading the page the user...placeholder.
 
 Application URL: 
 <br>
-Check out the deployed application here: 
+Check out the deployed application here: https://tedheikkila.github.io/hw6-weather-dashboard/
 <br>
 
 <br>
