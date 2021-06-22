@@ -11,19 +11,21 @@ body {
     text-align:center;
 }
 
-
 .display-3 {
-color:rgb(27, 27, 212);
-margin-top:-3%;
-font-size:50px;
+    color:rgb(27, 27, 212);
+    margin-top:-3%;
+    font-size:50px;
 }
 
 .btn {
-background-color: rgb(27, 27, 212);
-border:none;
-text-align: center;
+    background-color: rgb(27, 27, 212);
+    border:none;
+    text-align: center;
 }
 
+.form-control {
+    padding:25px;
+}
 
 .input-group {
     margin-top:50px;
@@ -32,6 +34,17 @@ text-align: center;
     margin-left:25%;
     margin-right:25%;
 }
+
+.main-weather {
+    text-align:center;
+}
+
+#btn-1, #btn-2, #btn-3 {
+    padding:15px;
+}
+
+
+
 
 
   
