@@ -1,1 +1,46 @@
-/* style css, weather dashboard, TWH, 6-22-21
+/* style css, weather dashboard, TWH, 6-22-21 */
+
+/* styles font-family on all body text etc */
+body {
+    font-family: 'Merriweather Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1;
+  }
+
+.jumbotron {
+    text-align:center;
+}
+
+
+.display-3 {
+color:rgb(27, 27, 212);
+margin-top:-3%;
+font-size:50px;
+}
+
+.btn {
+background-color: rgb(27, 27, 212);
+border:none;
+text-align: center;
+}
+
+
+.input-group {
+    margin-top:50px;
+    text-align:center;
+    width:50%;
+    margin-left:25%;
+    margin-right:25%;
+}
+
+
+  
+
+
+  
+
+
+  
+
+
+
