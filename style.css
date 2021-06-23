@@ -1,5 +1,11 @@
 /* style css, weather dashboard, TWH, 6-22-21 */
 
+
+* {
+    box-sizing: border-box;
+}
+
+
 /* styles font-family on all body text etc */
 body {
     font-family: 'Merriweather Sans', sans-serif;
@@ -40,7 +46,29 @@ body {
 }
 
 .main-weather {
-    text-align:center;
+    display:flex;
+    flex-wrap: wrap;
+    text-align: center;
+
+}
+
+.previous-weather {
+    text-align:center; 
+    position:relative;
+    width:20%;
+    margin-left:10%;
+
+}
+
+.previous-searches {
+    text-align: center;
+}
+
+.current-weather {
+    position:relative;
+    flex-wrap:nowrap;
+    width:70%;
+
 }
 
 #btn-1, #btn-2, #btn-3 {
@@ -49,8 +77,6 @@ body {
 
 .current-label {
     text-align: center;
-    margin-top:50px;
-    margin-bottom:20px;
 }
 
 .card {
@@ -72,6 +98,21 @@ body {
     margin-right:5%;
     margin-left:5%;
 }
+
+
+@media screen and (max-width: 900px) {
+    .main-weather {
+      flex-direction: column;
+      
+    }
+}    
+
+@media screen and (max-width: 900px) {
+    .current-label {
+      margin-top: 30px;
+      
+    }
+} 
 
 
 
