@@ -17,6 +17,10 @@ body {
     font-size:50px;
 }
 
+.previous-searches {
+    margin-bottom:20px;
+}
+
 .btn {
     background-color: rgb(27, 27, 212);
     border:none;
@@ -45,15 +49,28 @@ body {
 
 .current-label {
     text-align: center;
-    margin-top:30px;
+    margin-top:50px;
+    margin-bottom:20px;
 }
 
 .card {
     margin-top:20px;
-    margin-bottom:100px;
+    margin-bottom:50px;
     width:70%;
     margin-right:15%;
     margin-left:15%
+}
+
+.five-day-label {
+    margin-top:20px;
+    text-align:center;
+}
+
+.card-deck {
+    margin-bottom:200px;
+    width:90%;
+    margin-right:5%;
+    margin-left:5%;
 }
 
 

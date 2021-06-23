@@ -11,12 +11,13 @@
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     />
-   <!--google fonts link (work sans)-->
+    <!--google fonts link (work sans)-->
    <link 
     href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@300&display=swap" 
     rel="stylesheet">
     <!--custom css link-->
     <link rel="stylesheet" href="style.css" />
+    <!--tab title-->
     <title>Weather Dashboard</title>
 </head>
 
@@ -48,56 +49,67 @@
     </div>
   </section>
 
-  <!--weather output-->
+  <!--current weather-->
   <section class = "current-weather">
-
     <p class="current-label">Current Weather</p>
     <div class="card">
       <div class="card-header">
-        Palm Springs
+        City (mm/dd/yy)
       </div>
       <div class="card-body">
         <p class="card-text">Placeholder</p>
       </div>
     </div>
+  </section>
 
-
-    
-
-
-
-
-
-
+  <!--5-day forecast-->
+  <section class ="five-day">
+    <p class="five-day-label">Five-Day Forecast</p>
+    <div class="card-deck">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Day 1</h4>
+          <p class="card-text">Placeholder</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Day 2</h4>
+          <p class="card-text">Placeholder</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Day 3</h4>
+          <p class="card-text">Placeholder</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Day 4</h4>
+          <p class="card-text">Placeholder</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Day 5</h4>
+          <p class="card-text">Placeholder</p>
+        </div>
+      </div>
+    </div>
   </section>
 
 
 
- 
-  
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-<!--jQuery link (min)-->
+<!--js links-->
+<!--jQuery (min)-->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!--momment.js link (min)-->
+<!--momment.js (min)-->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 <!--bootstrap (min and popper)-->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
-<!--custom js script link-->
+<!--custom js-->
   <script type="text/javascript" src="script.js"></script>
 
 </body>
