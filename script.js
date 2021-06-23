@@ -1,29 +1,103 @@
 // js script, weather dashboard, TWH, 6-22-21
 
-// var tableBody = document.getElementById('repo-table');
-// var fetchButton = document.getElementById('fetch-button');
 
-// var requestUrl = 'https://api.github.com/orgs/nodejs/repos';
-
-var cityInput = document.getElementsByClassName('form-control')
-var cityTyped = $("input[name='form-control']").val();
+// var cityInput = document.getElementsByClassName('form-control')
 var apiKey = '9b2ae69bfce6899c26e740f85827a619'
+var searchButton = document.getElementById('search-button')
 
-// var weatherUrl = 'https://api.openweathermap.org/data/2.5/weather?q=London&appid=9b2ae69bfce6899c26e740f85827a619'
+
+var blankUrl = 'https://api.openweathermap.org/data/2.5/weather?q=Minneapolis&appid=9b2ae69bfce6899c26e740f85827a619';
 
 
-var testUrl = 'https://api.openweathermap.org/data/2.5/weather?q=Champlin&appid=9b2ae69bfce6899c26e740f85827a619'
-
-function getApi() {
-  // fetch request gets a list of all the repos for the node.js organization
-
-  fetch(testUrl)
+function getBlankApi() {
+  // fetch request loads Minneapolis by default if user left field blank
+  fetch(blankUrl)
     .then(function (response) {
       return response.json();
     })
     .then(function (data) {
       console.log(data)
-      //Loop over the data to generate a table, each table row will have a link to the repo url
+    });
+}
+
+getBlankApi()
+
+var cityTyped = $("input[name='form-control']").val();
+
+// var cityTest = getElementByClassName('test').value
+
+
+function checkInput() {
+    // checks and validate the cityTyped variable
+    // var cityTyped = $("input[name='form-control']").val();
+
+    var cityTyped = $("input[name='form-control']").val();
+    console.log(cityTyped)
+    var weatherUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + cityTyped + '&appid=9b2ae69bfce6899c26e740f85827a619';
+
+
+    fetch(weatherUrl)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      console.log(data)
+    });
+
+
+}
+
+
+
+
+
+// searchButton.addEventListener('click', checkInput);
+
+
+
+function debug() {
+
+
+
+
+    var cityTyped = $("input[name='form-control']").val();
+    console.log(cityTyped)
+
+}
+
+// console.log(cityTyped)
+
+
+var cityInput = document.querySelector('#city-name');
+
+
+var cityFormHandler = function (event) {
+    event.preventDefault();
+  
+    var cityTyped = cityInput.value.trim();
+  
+    if (cityTyped) {
+      console.log(cityTyped)
+  
+      cityInput.textContent = '';
+    } else {
+      alert('Please enter a city');
+    }
+  };
+
+  searchButton.addEventListener('click', cityFormHandler);
+
+
+
+
+
+
+
+
+
+
+
+  //Loop over the data to generate a table, each table row will have a link to the repo url
     //   for (var i = 0; i < data.length; i++) {
         //   console.log(data.length)
         // Creating elements, tablerow, tabledata, and anchor
@@ -41,8 +115,3 @@ function getApi() {
             // createTableRow.appendChild(tableData);
             // tableBody.appendChild(createTableRow);
     //   }
-    });
-}
-
-getApi()
-
