@@ -99,13 +99,19 @@ body {
     margin-left:5%;
 }
 
-
 @media screen and (max-width: 900px) {
     .main-weather {
-      flex-direction: column;
-      
+      flex-direction: column;   
     }
 }    
+
+@media screen and (max-width: 900px) {
+    .previous-weather, .current-weather {
+      flex-direction: column;   
+      width:100%;
+      margin:0;
+    }
+}   
 
 @media screen and (max-width: 900px) {
     .current-label {
