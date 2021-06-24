@@ -8,6 +8,9 @@ var currentDay = document.querySelector('.current-title')
 var currentTemp = document.querySelector('.current-temp')
 var currentWind = document.querySelector('.current-wind')
 var currentHumidity = document.querySelector('.current-humidity')
+var currentDate = document.querySelector('.current-date')
+var today = moment();
+
 
 // handles refresh events, so API call doesn't break on refresh
 function getBlankApi() {
@@ -17,7 +20,6 @@ function getBlankApi() {
       return response.json();
     })
     .then(function (data) {
-      console.log(data)
     });
 }
 
@@ -30,7 +32,6 @@ var cityFormHandler = function (event) {
     var cityTyped = cityInput.value.trim();
   
     if (cityTyped) {
-      console.log(cityTyped)
 
       var cityApi = 'https://api.openweathermap.org/data/2.5/weather?q=' + cityTyped + '&appid=' + apiKey;
       
@@ -44,6 +45,7 @@ var cityFormHandler = function (event) {
     }
   };
 
+  // search button initiates data load in
   searchButton.addEventListener('click', cityFormHandler);
 
   function getCityApi(cityApi) {
@@ -53,33 +55,38 @@ var cityFormHandler = function (event) {
         return response.json();
       })
       .then(function (data) {
-        // console.log(data)
 
-    
     loadCurrentWeather(data)
 
       });
   }
 
+  // function for loading current weather data (temp, humidity, wind, uv, weather icon image)
   function loadCurrentWeather(data) {
-    console.log(data.name)
 
+    //title of city
     currentDay.textContent = data.name
+  
+    //current moment js data
+    var today = moment();
+    $(".current-date").text(today.format("(MM/D/YYYY)"));
 
+    //converts from K to deg F
     var currentFtemp = Math.round(((data.main.temp - 273.15) * 9/5) + 32)
 
     currentTemp.textContent = currentFtemp + " F"
-
-    console.log(data.wind.speed)
 
     currentWind.textContent = data.wind.speed + " mph"
 
     currentHumidity.textContent = data.main.humidity + "%"
 
+    //add in UV index
+    //add weather icon img 
 
   }
 
 
+  
 
 
 
@@ -91,21 +98,6 @@ var cityFormHandler = function (event) {
 
 
 
-  //Loop over the data to generate a table, each table row will have a link to the repo url
-    //   for (var i = 0; i < data.length; i++) {
-        //   console.log(data.length)
-        // Creating elements, tablerow, tabledata, and anchor
-            // var createTableRow = document.createElement('tr');
-            // var tableData = document.createElement('td');
-            // var link = document.createElement('a');
 
-        // Setting the text of link and the href of the link
-            // link.textContent = data[i].html_url;
-            // link.href = data[i].html_url;
 
-        // Appending the link to the tabledata and then appending the tabledata to the tablerow
-        // The tablerow then gets appended to the tablebody
-            // tableData.appendChild(link);
-            // createTableRow.appendChild(tableData);
-            // tableBody.appendChild(createTableRow);
-    //   }
+ 
