@@ -87,6 +87,10 @@ body {
     font-size:20px;
 }
 
+.current-icon {
+    text-decoration: underline;
+}
+
 .card {
     margin-top:20px;
     margin-bottom:50px;
@@ -103,6 +107,12 @@ body {
 
 .day1-title, .day2-title, .day3-title, .day4-title, .day5-title {
     margin-bottom:20px;
+}
+
+.day1-icon, .day2-icon, .day3-icon, .day4-icon, .day5-icon {
+    margin-top: 10px;
+    margin-bottom: 30px;
+    text-decoration: underline;
 }
 
 .card-deck {
