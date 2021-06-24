@@ -33,6 +33,10 @@ body {
     text-align: center;
 }
 
+.btn-group {
+    margin-right:10px;
+}
+
 .form-control {
     padding:25px;
 }
@@ -91,9 +95,14 @@ body {
     margin-left:15%
 }
 
+
 .five-day-label {
     margin-top:20px;
     text-align:center;
+}
+
+.day1-title, .day2-title, .day3-title, .day4-title, .day5-title {
+    margin-bottom:20px;
 }
 
 .card-deck {
