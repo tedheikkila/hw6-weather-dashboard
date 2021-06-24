@@ -1,16 +1,17 @@
 // js script, weather dashboard, TWH, 6-22-21
 
-
-// var cityInput = document.getElementsByClassName('form-control')
+var cityInput = document.querySelector('#city-name');
 var apiKey = '9b2ae69bfce6899c26e740f85827a619'
 var searchButton = document.getElementById('search-button')
-
-
 var blankUrl = 'https://api.openweathermap.org/data/2.5/weather?q=Minneapolis&appid=9b2ae69bfce6899c26e740f85827a619';
+var currentDay = document.querySelector('.current-title')
+var currentTemp = document.querySelector('.current-temp')
+var currentWind = document.querySelector('.current-wind')
+var currentHumidity = document.querySelector('.current-humidity')
 
-
+// handles refresh events, so API call doesn't break on refresh
 function getBlankApi() {
-  // fetch request loads Minneapolis by default if user left field blank
+  // fetch request loads Minneapolis by default if user left field blank and page refreshes
   fetch(blankUrl)
     .then(function (response) {
       return response.json();
@@ -22,54 +23,6 @@ function getBlankApi() {
 
 getBlankApi()
 
-var cityTyped = $("input[name='form-control']").val();
-
-// var cityTest = getElementByClassName('test').value
-
-
-function checkInput() {
-    // checks and validate the cityTyped variable
-    // var cityTyped = $("input[name='form-control']").val();
-
-    var cityTyped = $("input[name='form-control']").val();
-    console.log(cityTyped)
-    var weatherUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + cityTyped + '&appid=9b2ae69bfce6899c26e740f85827a619';
-
-
-    fetch(weatherUrl)
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-      console.log(data)
-    });
-
-
-}
-
-
-
-
-
-// searchButton.addEventListener('click', checkInput);
-
-
-
-function debug() {
-
-
-
-
-    var cityTyped = $("input[name='form-control']").val();
-    console.log(cityTyped)
-
-}
-
-// console.log(cityTyped)
-
-
-var cityInput = document.querySelector('#city-name');
-
 
 var cityFormHandler = function (event) {
     event.preventDefault();
@@ -78,7 +31,13 @@ var cityFormHandler = function (event) {
   
     if (cityTyped) {
       console.log(cityTyped)
-  
+
+      var cityApi = 'https://api.openweathermap.org/data/2.5/weather?q=' + cityTyped + '&appid=' + apiKey;
+      
+    // add in another var called uvApi to get UV index pass through functions below 
+
+      getCityApi(cityApi)
+    
       cityInput.textContent = '';
     } else {
       alert('Please enter a city');
@@ -86,6 +45,41 @@ var cityFormHandler = function (event) {
   };
 
   searchButton.addEventListener('click', cityFormHandler);
+
+  function getCityApi(cityApi) {
+    // fetch request loads city typed in
+    fetch(cityApi)
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {
+        // console.log(data)
+
+    
+    loadCurrentWeather(data)
+
+      });
+  }
+
+  function loadCurrentWeather(data) {
+    console.log(data.name)
+
+    currentDay.textContent = data.name
+
+    var currentFtemp = Math.round(((data.main.temp - 273.15) * 9/5) + 32)
+
+    currentTemp.textContent = currentFtemp + " F"
+
+    console.log(data.wind.speed)
+
+    currentWind.textContent = data.wind.speed + " mph"
+
+    currentHumidity.textContent = data.main.humidity + "%"
+
+
+  }
+
+
 
 
 
