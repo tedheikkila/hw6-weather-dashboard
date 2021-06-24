@@ -9,6 +9,7 @@ var currentTemp = document.querySelector('.current-temp')
 var currentWind = document.querySelector('.current-wind')
 var currentHumidity = document.querySelector('.current-humidity')
 var currentDate = document.querySelector('.current-date')
+var dayOne = document.querySelector('.day-one-title')
 var today = moment();
 
 //SECTION #1: LOAD IN DEFAULT WEATHER DATA
@@ -57,6 +58,7 @@ var cityFormHandler = function (event) {
 
   // search button initiates data load in
   searchButton.addEventListener('click', cityFormHandler);
+
 
   function getCityApi(cityApi) {
     // fetch request loads city typed in
@@ -111,7 +113,30 @@ var cityFormHandler = function (event) {
 
       console.log(data)
 
+      loadFiveDay(data)
+
       });
+  }
+
+  function loadFiveDay(data) {
+
+    console.log(data)
+       //current moment js data
+
+    var dayOneEl= moment().add(1, 'days').calendar(); 
+
+    console.log(dayOneEl)
+    // var dayOneFormat = dayOne.format("(MM/D/YYYY)")
+
+    // console.log(dayOneFormat)
+
+    // var dayOne = $(".day-one-title").text(dayOneEl._d.format("(MM/D/YYYY)"));
+
+    // console.log(dayOne)
+
+    
+
+
   }
 
 
