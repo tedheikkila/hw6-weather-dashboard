@@ -9,6 +9,7 @@ var currentTemp = document.querySelector('.current-temp')
 var currentWind = document.querySelector('.current-wind')
 var currentHumidity = document.querySelector('.current-humidity')
 var currentDate = document.querySelector('.current-date')
+var currentUv = document.querySelector('.current-uv')
 var dayOne = document.querySelector('.day1-title')
 var dayTwo = document.querySelector('.day2-title')
 var dayThree = document.querySelector('.day3-title')
@@ -104,8 +105,6 @@ var cityFormHandler = function (event) {
 
     //title of city
     currentDay.textContent = data.name
-
-    console.log(data)
   
     //current moment js data
     var today = moment();
@@ -128,8 +127,50 @@ var cityFormHandler = function (event) {
 
     //add in UV index
 
+    // console.log(data)
+
+    var latIn = data.coord.lat
+    var lonIn = data.coord.lon
+
+    // console.log(lonIn)
+
+    getUvi(lonIn, latIn)
 
   }
+
+  function getUvi(lonIn, latIn) {
+    var lon = lonIn;
+    var lat = latIn;
+
+    var uVApi = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + lat + '&lon=' + lon + '&exclude=hourly,daily&appid=' + apiKey
+
+     // fetch request loads city typed in
+     fetch(uVApi)
+     .then(function (response) {
+       return response.json();
+     })
+     .then(function (data) {
+
+      var UviEl = data.current.uvi
+
+      console.log(UviEl)
+
+      if (UviEl<3) {
+        currentUv.textContent = UviEl
+        currentUv.style.color = 'green'
+      } else if (4<UviEl<6) {
+        currentUv.textContent = UviEl
+        currentUv.style.color = 'orange'
+      } else if (7<UviEl<10) {
+        currentUv.textContent = UviEl
+        currentUv.style.color = 'red'
+      }
+
+     });
+
+  }
+
+
 
 //SECTION #3: 5-DAY FORECAST WEATHER DATA
 
@@ -151,8 +192,6 @@ var cityFormHandler = function (event) {
 
   function loadFiveDay(data) {
 
-    console.log(data)
-
     //Day 1
       dayOneD = data.list[0].dt_txt
 
@@ -163,8 +202,6 @@ var cityFormHandler = function (event) {
 
       //day1 icon
       dayOneIcon.textContent = data.list[0].weather[0].description
-
-      console.log(dayOneIcon)
 
       dayOneTemp = data.list[0].main.temp
 
@@ -265,6 +302,11 @@ var cityFormHandler = function (event) {
       dayFiveWind.textContent = data.list[32].wind.speed + " mph"
       //day5 hum
       dayFiveHumidity.textContent = data.list[32].main.humidity + "%"
+
+
+
+      // console.log(data)
+
 
   }
 
