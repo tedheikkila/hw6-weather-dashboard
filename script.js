@@ -1,9 +1,9 @@
 // js script, weather dashboard, TWH, 6-22-21
 
-var cityInput = document.querySelector('#city-name');
+var cityInput = document.querySelector('#city-name')
 var apiKey = '9b2ae69bfce6899c26e740f85827a619'
 var searchButton = document.getElementById('search-button')
-var blankUrl = 'https://api.openweathermap.org/data/2.5/weather?q=Minneapolis&appid=9b2ae69bfce6899c26e740f85827a619';
+var blankUrl = 'https://api.openweathermap.org/data/2.5/weather?q=Minneapolis&appid=9b2ae69bfce6899c26e740f85827a619'
 var currentDay = document.querySelector('.current-title')
 var currentTemp = document.querySelector('.current-temp')
 var currentWind = document.querySelector('.current-wind')
@@ -31,13 +31,16 @@ var dayFiveTempF = document.querySelector('.day5-temp')
 var dayFiveWind = document.querySelector('.day5-wind')
 var dayFiveHumidity = document.querySelector('.day5-humidity')
 var today = moment();
-var buttonOne = document.querySelector('#btn-1')
+var buttonOne = document.querySelector('#search-btn-one')
 var currentIcon = document.querySelector('.current-icon')
 var dayOneIcon = document.querySelector('.day1-icon')
 var dayTwoIcon = document.querySelector('.day2-icon')
 var dayThreeIcon = document.querySelector('.day3-icon')
 var dayFourIcon = document.querySelector('.day4-icon')
 var dayFiveIcon = document.querySelector('.day5-icon')
+var uvButton = document.querySelector('#uv-btn')
+var fiveDayDisplay = document.querySelector('.five-day')
+
 
 //SECTION #1: LOAD IN DEFAULT WEATHER DATA
 
@@ -105,6 +108,8 @@ var cityFormHandler = function (event) {
 
     //title of city
     currentDay.textContent = data.name
+    var currentDayStore = data.name
+
   
     //current moment js data
     var today = moment();
@@ -115,19 +120,24 @@ var cityFormHandler = function (event) {
 
     //displays temp, wind speed, and humidity
     currentTemp.textContent = currentFtemp + " F"
+    var currentTempStore = currentFtemp + " F"
 
     currentWind.textContent = data.wind.speed + " mph"
+    var currentWindStore = data.wind.speed + " mph"
+
 
     currentHumidity.textContent = data.main.humidity + "%"
+    var currentHumStore = data.main.humidity + "%"
+
 
     buttonOne.textContent = data.name
+    var buttonOneStore = data.name
 
     //revise to image
     currentIcon.textContent = data.weather[0].description
+    currentIconStore = data.weather[0].description
 
     //add in UV index
-
-    // console.log(data)
 
     var latIn = data.coord.lat
     var lonIn = data.coord.lon
@@ -135,6 +145,7 @@ var cityFormHandler = function (event) {
     // console.log(lonIn)
 
     getUvi(lonIn, latIn)
+    setCurrentStorage(currentDayStore, currentTempStore, currentWindStore, currentHumStore, buttonOneStore, currentIconStore)
 
   }
 
@@ -153,8 +164,6 @@ var cityFormHandler = function (event) {
 
       var UviEl = data.current.uvi
 
-      console.log(UviEl)
-
       if (UviEl<3) {
         currentUv.textContent = UviEl
         currentUv.style.color = 'green'
@@ -166,10 +175,14 @@ var cityFormHandler = function (event) {
         currentUv.style.color = 'red'
       }
 
+
+      setUvStorage(UviEl)
+
      });
 
-  }
 
+
+  }
 
 
 //SECTION #3: 5-DAY FORECAST WEATHER DATA
@@ -191,6 +204,8 @@ var cityFormHandler = function (event) {
   }
 
   function loadFiveDay(data) {
+
+    fiveDayDisplay.style.display = "block"
 
     //Day 1
       dayOneD = data.list[0].dt_txt
@@ -303,12 +318,75 @@ var cityFormHandler = function (event) {
       //day5 hum
       dayFiveHumidity.textContent = data.list[32].main.humidity + "%"
 
+  }
 
 
-      // console.log(data)
+  //SECTION #4: local storage and saving previous searches btns
 
+    //create an object variable w/all current vars (city, date, temp, hum, wind, uv)
+    //stringify this object into local storage using json
+    //on page refresh have a render function ready that get items and parses it all
+    //start small
+
+  function setCurrentStorage(currentDayStore, currentTempStore, currentWindStore, currentHumStore, buttonOneStore, currentIconStore) {
+
+  var currentStorage = [currentDayStore, currentTempStore, currentWindStore, currentHumStore, buttonOneStore, currentIconStore]
+
+  // console.log(currentStorage)
+
+  localStorage.setItem("current", JSON.stringify(currentStorage));
 
   }
+
+  //clicking previous search button re-renders page's current weather
+
+
+  function getStorage() {
+    // Get stored todos from localStorage
+  var storedCurrent = JSON.parse(localStorage.getItem("current"));
+
+  // If todos were retrieved from localStorage, update the todos array to it
+  
+  currentDay.textContent = storedCurrent[0]
+  currentTemp.textContent = storedCurrent[1]
+  currentWind.textContent = storedCurrent[2]
+  currentHumidity.textContent = storedCurrent[3]
+  buttonOne.textContent = storedCurrent[4]
+  currentIcon.textContent = storedCurrent[5]
+
+  }
+
+
+  buttonOne.addEventListener('click', getStorage)
+
+
+  function setUvStorage(UviEl) {
+
+    localStorage.setItem("current-uv", UviEl);
+
+    }
+
+  function getUvStorage() {
+
+    var storedUv = localStorage.getItem("current-uv")
+
+    if (storedUv<3) {
+      currentUv.textContent = storedUv
+      currentUv.style.color = 'green'
+    } else if (4<storedUv<6) {
+      currentUv.textContent = storedUv
+      currentUv.style.color = 'orange'
+    } else if (7<storedUv<10) {
+      currentUv.textContent = storedUv
+      currentUv.style.color = 'red'
+    }
+
+  }
+
+  uvButton.addEventListener('click', getUvStorage)
+
+
+
 
 
 

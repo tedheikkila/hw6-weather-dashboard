@@ -75,7 +75,7 @@ body {
 
 }
 
-#btn-1, #btn-2, #btn-3 {
+#search-btn-one {
     padding:15px;
 }
 
@@ -97,6 +97,10 @@ body {
     width:70%;
     margin-right:15%;
     margin-left:15%
+}
+
+.five-day {
+    display:none;
 }
 
 
