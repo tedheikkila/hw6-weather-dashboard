@@ -42,7 +42,6 @@ var dayFiveIcon = document.querySelector('.day5-icon')
 var uvButton = document.querySelector('#uv-btn')
 var fiveDayDisplay = document.querySelector('.five-day')
 
-
 //SECTION #1: LOAD IN DEFAULT WEATHER DATA
 
 // handles refresh events, so API call doesn't break on refresh
@@ -57,7 +56,6 @@ function getBlankApi() {
 }
 
 getBlankApi()
-
 
 //SECTION #2: CURRENT WEATHER DATA
 
@@ -182,7 +180,6 @@ var cityFormHandler = function (event) {
 
      });
   }
-
 
 //SECTION #3: 5-DAY FORECAST WEATHER DATA
 
@@ -319,8 +316,6 @@ var cityFormHandler = function (event) {
 
   }
 
-
-  
   //SECTION #4: local storage and saving previous searches btns
 
   //brings vars into an array, stringifies, and sets to local storage
@@ -383,27 +378,4 @@ var cityFormHandler = function (event) {
     //re-render five day using some type of for loop sequence/object manipulation to set/get into local storage
     //re-factor five day load-in using for loop over relevant API's output
 
-  console.log("This app is best used while listening to 'Mr. Blue Sky' by ELO. Jam on! Keep living!")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
+  console.log("This app is best used while listening to 'Mr. Blue Sky' by ELO.")
