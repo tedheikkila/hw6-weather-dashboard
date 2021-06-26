@@ -13,10 +13,12 @@ body {
     line-height: 1;
   }
 
+/* header bootstrap */
 .jumbotron {
     text-align:center;
 }
 
+/*dashboard title */
 .display-3 {
     color:rgb(27, 27, 212);
     margin-top:-3%;
@@ -27,6 +29,7 @@ body {
     margin-bottom:20px;
 }
 
+/* general btn styling */
 .btn {
     background-color: rgb(27, 27, 212);
     border:none;
@@ -41,6 +44,7 @@ body {
     padding:25px;
 }
 
+/*input area */
 .input-group {
     margin-top:50px;
     text-align:center;
@@ -49,12 +53,14 @@ body {
     margin-right:25%;
 }
 
+/* grabs main content */
 .main-weather {
     display:flex;
     flex-wrap: wrap;
     text-align: center;
 
 }
+
 
 .previous-weather {
     text-align:center; 
@@ -75,6 +81,7 @@ body {
 
 }
 
+/* previous search btn */
 #search-btn-one {
     padding:15px;
 }
@@ -91,6 +98,7 @@ body {
     text-decoration: underline;
 }
 
+/* card element */
 .card {
     margin-top:20px;
     margin-bottom:50px;
@@ -99,6 +107,7 @@ body {
     margin-left:15%
 }
 
+/* hides initial display on reload events */
 .five-day {
     display:none;
 }
@@ -109,10 +118,12 @@ body {
     text-align:center;
 }
 
+/* displays date */
 .day1-title, .day2-title, .day3-title, .day4-title, .day5-title {
     margin-bottom:20px;
 }
 
+/* weather status icons */
 .day1-icon, .day2-icon, .day3-icon, .day4-icon, .day5-icon {
     margin-top: 10px;
     margin-bottom: 30px;
@@ -126,10 +137,12 @@ body {
     margin-left:5%;
 }
 
+/*moves text left */
 span {
     margin-left:5px;
 }
 
+/*media screen for proper flex */
 @media screen and (max-width: 900px) {
     .main-weather {
       flex-direction: column;   

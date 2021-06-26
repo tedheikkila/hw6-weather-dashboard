@@ -1,9 +1,10 @@
 // js script, weather dashboard, TWH, 6-22-21
 
+// global vars
 var cityInput = document.querySelector('#city-name')
 var apiKey = '9b2ae69bfce6899c26e740f85827a619'
-var searchButton = document.getElementById('search-button')
 var blankUrl = 'https://api.openweathermap.org/data/2.5/weather?q=Minneapolis&appid=9b2ae69bfce6899c26e740f85827a619'
+var searchButton = document.getElementById('search-button')
 var currentDay = document.querySelector('.current-title')
 var currentTemp = document.querySelector('.current-temp')
 var currentWind = document.querySelector('.current-wind')
@@ -60,6 +61,7 @@ getBlankApi()
 
 //SECTION #2: CURRENT WEATHER DATA
 
+// initiates when user clicks search buttons; validates input; gives user feedback for false values
 var cityFormHandler = function (event) {
     event.preventDefault();
   
@@ -67,12 +69,12 @@ var cityFormHandler = function (event) {
   
     if (cityTyped) {
 
+      // current weather API call
       var cityApi = 'https://api.openweathermap.org/data/2.5/weather?q=' + cityTyped + '&appid=' + apiKey;
 
+      // five day API call
       var fiveDayApi = 'https://api.openweathermap.org/data/2.5/forecast?q=' + cityTyped + '&appid=' + apiKey;
       
-    // add in another var called uvApi to get UV index pass through functions below 
-
       cityInput.value = '';
 
       // current weather api call
@@ -86,10 +88,11 @@ var cityFormHandler = function (event) {
     }
   };
 
-  // search button initiates data load in
+  // search button initiates the above
   searchButton.addEventListener('click', cityFormHandler);
 
 
+  //API call for city loading in 
   function getCityApi(cityApi) {
     // fetch request loads city typed in
     fetch(cityApi)
@@ -129,26 +132,25 @@ var cityFormHandler = function (event) {
     currentHumidity.textContent = data.main.humidity + "%"
     var currentHumStore = data.main.humidity + "%"
 
-
+    // changes prev search btn's text to typed in city
     buttonOne.textContent = data.name
     var buttonOneStore = data.name
 
-    //revise to image
+    // provides overcast status
     currentIcon.textContent = data.weather[0].description
     currentIconStore = data.weather[0].description
 
-    //add in UV index
-
+    // declaring lat and lon from previous API call
     var latIn = data.coord.lat
     var lonIn = data.coord.lon
 
-    // console.log(lonIn)
-
+    //initiates UV API call and prepares above values into local storage 
     getUvi(lonIn, latIn)
     setCurrentStorage(currentDayStore, currentTempStore, currentWindStore, currentHumStore, buttonOneStore, currentIconStore)
 
   }
 
+  //calls getUvi API call and loads in 
   function getUvi(lonIn, latIn) {
     var lon = lonIn;
     var lat = latIn;
@@ -163,7 +165,7 @@ var cityFormHandler = function (event) {
      .then(function (data) {
 
       var UviEl = data.current.uvi
-
+      // displays green, orange, or red depending on uvi (favorable, moderate, severe)
       if (UviEl<3) {
         currentUv.textContent = UviEl
         currentUv.style.color = 'green'
@@ -175,13 +177,10 @@ var cityFormHandler = function (event) {
         currentUv.style.color = 'red'
       }
 
-
+      // passes UviEl into local storage
       setUvStorage(UviEl)
 
      });
-
-
-
   }
 
 
@@ -203,6 +202,7 @@ var cityFormHandler = function (event) {
       });
   }
 
+  // loads the five day forecast API data into HTML fields; for loop would've been more concise
   function loadFiveDay(data) {
 
     fiveDayDisplay.style.display = "block"
@@ -230,7 +230,6 @@ var cityFormHandler = function (event) {
       dayOneHumidity.textContent = data.list[0].main.humidity + "%"
 
     //Day 2
-
       dayTwoD = data.list[8].dt_txt
 
       var dayTwoF = dayTwoD.slice(0,11)
@@ -321,32 +320,23 @@ var cityFormHandler = function (event) {
   }
 
 
+  
   //SECTION #4: local storage and saving previous searches btns
 
-    //create an object variable w/all current vars (city, date, temp, hum, wind, uv)
-    //stringify this object into local storage using json
-    //on page refresh have a render function ready that get items and parses it all
-    //start small
-
+  //brings vars into an array, stringifies, and sets to local storage
   function setCurrentStorage(currentDayStore, currentTempStore, currentWindStore, currentHumStore, buttonOneStore, currentIconStore) {
 
   var currentStorage = [currentDayStore, currentTempStore, currentWindStore, currentHumStore, buttonOneStore, currentIconStore]
-
-  // console.log(currentStorage)
 
   localStorage.setItem("current", JSON.stringify(currentStorage));
 
   }
 
-  //clicking previous search button re-renders page's current weather
-
-
   function getStorage() {
-    // Get stored todos from localStorage
+    // Get stored data from localStorage
   var storedCurrent = JSON.parse(localStorage.getItem("current"));
 
-  // If todos were retrieved from localStorage, update the todos array to it
-  
+    // re-renders current weather data
   currentDay.textContent = storedCurrent[0]
   currentTemp.textContent = storedCurrent[1]
   currentWind.textContent = storedCurrent[2]
@@ -356,16 +346,17 @@ var cityFormHandler = function (event) {
 
   }
 
-
+  // intiates getStorage for current weather
   buttonOne.addEventListener('click', getStorage)
 
-
+  // sets uvi values into local
   function setUvStorage(UviEl) {
 
     localStorage.setItem("current-uv", UviEl);
 
     }
 
+  //gets uvi and re-color codes it; re-renders onto page
   function getUvStorage() {
 
     var storedUv = localStorage.getItem("current-uv")
@@ -383,7 +374,16 @@ var cityFormHandler = function (event) {
 
   }
 
+  // UV i button click event initiates putting uvi into local storage
   uvButton.addEventListener('click', getUvStorage)
+
+
+  //OMISSIONS & Room for Improvements (time permitting):
+    //display icons not textual info for overcast status
+    //re-render five day using some type of for loop sequence/object manipulation to set/get into local storage
+    //re-factor five day load-in using for loop over relevant API's output
+
+  console.log("This app is best used while listening to 'Mr. Blue Sky' by ELO. Jam on! Keep living!")
 
 
 
