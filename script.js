@@ -302,7 +302,7 @@ var cityFormHandler = function (event) {
 
       //day5 icon
       dayFiveIcon.textContent = data.list[32].weather[0].description
-
+      
       dayFiveTemp = data.list[32].main.temp
 
       var dayFiveFTemp = Math.round(((dayFiveTemp - 273.15) * 9/5) + 32)
