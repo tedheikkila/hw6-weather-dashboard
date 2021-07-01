@@ -206,7 +206,6 @@ var cityFormHandler = function (event) {
 
     //Day 1
       dayOneD = data.list[0].dt_txt
-
       var dayOneF = dayOneD.slice(0,11)
 
       //day1 date
@@ -214,9 +213,7 @@ var cityFormHandler = function (event) {
 
       //day1 icon
       dayOneIcon.textContent = data.list[0].weather[0].description
-
       dayOneTemp = data.list[0].main.temp
-
       var dayOneFTemp = Math.round(((dayOneTemp - 273.15) * 9/5) + 32)
 
       //day1 temp
@@ -228,7 +225,6 @@ var cityFormHandler = function (event) {
 
     //Day 2
       dayTwoD = data.list[8].dt_txt
-
       var dayTwoF = dayTwoD.slice(0,11)
 
       //day2 date
@@ -236,9 +232,7 @@ var cityFormHandler = function (event) {
 
       //day2 icon
       dayTwoIcon.textContent = data.list[8].weather[0].description
-
       dayTwoTemp = data.list[8].main.temp
-
       var dayTwoFTemp = Math.round(((dayTwoTemp - 273.15) * 9/5) + 32)
 
       //day2 temp
@@ -250,7 +244,6 @@ var cityFormHandler = function (event) {
 
     //Day 3
       dayThreeD = data.list[16].dt_txt
-
       var dayThreeF = dayThreeD.slice(0,11)
 
       //day3 date
@@ -258,9 +251,7 @@ var cityFormHandler = function (event) {
 
       //day3 icon
       dayThreeIcon.textContent = data.list[16].weather[0].description
-
       dayThreeTemp = data.list[16].main.temp
-
       var dayThreeFTemp = Math.round(((dayThreeTemp - 273.15) * 9/5) + 32)
 
       //day3 temp
@@ -272,7 +263,6 @@ var cityFormHandler = function (event) {
 
     //Day 4
       dayFourD = data.list[24].dt_txt
-
       var dayFourF = dayFourD.slice(0,11)
 
       //day4 date
@@ -280,9 +270,7 @@ var cityFormHandler = function (event) {
 
       //day4 icon
       dayFourIcon.textContent = data.list[24].weather[0].description
-
       dayFourTemp = data.list[24].main.temp
-
       var dayFourFTemp = Math.round(((dayFourTemp - 273.15) * 9/5) + 32)
 
       //day4 temp
@@ -294,7 +282,6 @@ var cityFormHandler = function (event) {
 
     //Day 5
       dayFiveD = data.list[32].dt_txt
-
       var dayFiveF = dayFiveD.slice(0,11)
 
       //day5 date
@@ -302,9 +289,7 @@ var cityFormHandler = function (event) {
 
       //day5 icon
       dayFiveIcon.textContent = data.list[32].weather[0].description
-      
       dayFiveTemp = data.list[32].main.temp
-
       var dayFiveFTemp = Math.round(((dayFiveTemp - 273.15) * 9/5) + 32)
 
       //day5 temp
@@ -336,8 +321,9 @@ var cityFormHandler = function (event) {
   currentTemp.textContent = storedCurrent[1]
   currentWind.textContent = storedCurrent[2]
   currentHumidity.textContent = storedCurrent[3]
-  buttonOne.textContent = storedCurrent[4]
   currentIcon.textContent = storedCurrent[5]
+  buttonOne.textContent = storedCurrent[4]
+
 
   }
 
@@ -379,3 +365,17 @@ var cityFormHandler = function (event) {
     //re-factor five day load-in using for loop over relevant API's output
 
   console.log("This app is best used while listening to 'Mr. Blue Sky' by ELO.")
+
+  // gets saved movie from local storage set previously using shuffle movie btn
+function getSavedCity() {
+  var storedCity = JSON.parse(localStorage.getItem("current"));
+  // on first page return, checks if value is null (no previous shuffle btn click events)
+  if (storedCity === null) {
+    buttonOne.textContent = "City";
+  } else {
+    buttonOne.textContent = storedCity[4];
+  }
+}
+
+// calling getSavedMovie on page render/browser refresh
+getSavedCity()
