@@ -42,6 +42,7 @@ var dayFiveIcon = document.querySelector('.day5-icon')
 var uvButton = document.querySelector('#uv-btn')
 var fiveDayDisplay = document.querySelector('.five-day')
 
+
 //SECTION #1: LOAD IN DEFAULT WEATHER DATA
 
 // handles refresh events, so API call doesn't break on refresh
@@ -80,7 +81,7 @@ var cityFormHandler = function (event) {
 
       // five day forecast api call
       getFiveDayApi(fiveDayApi)
-    
+
     } else {
       alert('Please enter a city');
     }
@@ -323,9 +324,8 @@ var cityFormHandler = function (event) {
   currentHumidity.textContent = storedCurrent[3]
   currentIcon.textContent = storedCurrent[5]
   buttonOne.textContent = storedCurrent[4]
-
-
   }
+
 
   // intiates getStorage for current weather
   buttonOne.addEventListener('click', getStorage)
@@ -364,7 +364,7 @@ var cityFormHandler = function (event) {
     //re-render five day using some type of for loop sequence/object manipulation to set/get into local storage
     //re-factor five day load-in using for loop over relevant API's output
 
-  console.log("This app is best used while listening to 'Mr. Blue Sky' by ELO.")
+  // console.log("This app is best used while listening to 'Mr. Blue Sky' by ELO.")
 
   // gets saved movie from local storage set previously using shuffle movie btn
 function getSavedCity() {
@@ -373,9 +373,11 @@ function getSavedCity() {
   if (storedCity === null) {
     buttonOne.textContent = "City";
   } else {
-    buttonOne.textContent = storedCity[4];
+    buttonOne.textContent = storedCity[4]
+    
   }
 }
 
 // calling getSavedMovie on page render/browser refresh
 getSavedCity()
+
