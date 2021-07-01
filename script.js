@@ -1,4 +1,4 @@
-// js script, weather dashboard, TWH, 6-22-21
+// js script, weather dashboard, TWH, 7-1-21
 
 // global vars
 var cityInput = document.querySelector('#city-name')
@@ -42,23 +42,7 @@ var dayFiveIcon = document.querySelector('.day5-icon')
 var uvButton = document.querySelector('#uv-btn')
 var fiveDayDisplay = document.querySelector('.five-day')
 
-
-//SECTION #1: LOAD IN DEFAULT WEATHER DATA
-
-// handles refresh events, so API call doesn't break on refresh
-function getBlankApi() {
-  // fetch request loads Minneapolis by default if user left field blank and page refreshes
-  fetch(blankUrl)
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-    });
-}
-
-getBlankApi()
-
-//SECTION #2: CURRENT WEATHER DATA
+//SECTION #1: CURRENT WEATHER DATA
 
 // initiates when user clicks search buttons; validates input; gives user feedback for false values
 var cityFormHandler = function (event) {
@@ -146,7 +130,6 @@ var cityFormHandler = function (event) {
     //initiates UV API call and prepares above values into local storage 
     getUvi(lonIn, latIn)
     setCurrentStorage(currentDayStore, currentTempStore, currentWindStore, currentHumStore, buttonOneStore, currentIconStore)
-
   }
 
   //calls getUvi API call and loads in 
@@ -182,7 +165,7 @@ var cityFormHandler = function (event) {
      });
   }
 
-//SECTION #3: 5-DAY FORECAST WEATHER DATA
+//SECTION #2: 5-DAY FORECAST WEATHER DATA
 
   //api.openweathermap.org/data/2.5/forecast?q={city name}&appid={API key}
 
@@ -302,7 +285,7 @@ var cityFormHandler = function (event) {
 
   }
 
-  //SECTION #4: local storage and saving previous searches btns
+  //SECTION #3: local storage and saving previous searches btns
 
   //brings vars into an array, stringifies, and sets to local storage
   function setCurrentStorage(currentDayStore, currentTempStore, currentWindStore, currentHumStore, buttonOneStore, currentIconStore) {
@@ -326,7 +309,6 @@ var cityFormHandler = function (event) {
   buttonOne.textContent = storedCurrent[4]
   }
 
-
   // intiates getStorage for current weather
   buttonOne.addEventListener('click', getStorage)
 
@@ -334,7 +316,6 @@ var cityFormHandler = function (event) {
   function setUvStorage(UviEl) {
 
     localStorage.setItem("current-uv", UviEl);
-
     }
 
   //gets uvi and re-color codes it; re-renders onto page
@@ -352,19 +333,10 @@ var cityFormHandler = function (event) {
       currentUv.textContent = storedUv
       currentUv.style.color = 'red'
     }
-
   }
 
   // UV i button click event initiates putting uvi into local storage
   uvButton.addEventListener('click', getUvStorage)
-
-
-  //OMISSIONS & Room for Improvements (time permitting):
-    //display icons not textual info for overcast status
-    //re-render five day using some type of for loop sequence/object manipulation to set/get into local storage
-    //re-factor five day load-in using for loop over relevant API's output
-
-  // console.log("This app is best used while listening to 'Mr. Blue Sky' by ELO.")
 
   // gets saved movie from local storage set previously using shuffle movie btn
 function getSavedCity() {
@@ -373,11 +345,9 @@ function getSavedCity() {
   if (storedCity === null) {
     buttonOne.textContent = "City";
   } else {
-    buttonOne.textContent = storedCity[4]
-    
+    buttonOne.textContent = storedCity[4]  
   }
 }
 
 // calling getSavedMovie on page render/browser refresh
 getSavedCity()
-
