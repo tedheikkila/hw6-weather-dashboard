@@ -1,4 +1,4 @@
-# hw6-weather-dashboard
+# weather-dashboard
 
 Summary:
 <br>
