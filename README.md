@@ -14,7 +14,7 @@ Upon loading the page the user can type in any city into an input field and see 
 
 Application URL: 
 <br>
-Check out the deployed application here: https://tedheikkila.github.io/hw6-weather-dashboard/
+Check out the deployed application here: https://tedheikkila.github.io/weather-dashboard/
 <br>
 
 <br>
