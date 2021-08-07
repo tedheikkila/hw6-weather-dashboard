@@ -33,7 +33,7 @@ var dayFiveWind = document.querySelector('.day5-wind')
 var dayFiveHumidity = document.querySelector('.day5-humidity')
 var today = moment();
 var buttonOne = document.querySelector('#search-btn-one')
-var currentIcon = document.querySelector('.current-icon')
+var currentIcon = document.querySelector('.current-img')
 var dayOneIcon = document.querySelector('.day1-icon')
 var dayTwoIcon = document.querySelector('.day2-icon')
 var dayThreeIcon = document.querySelector('.day3-icon')
@@ -96,7 +96,6 @@ function loadCurrentWeather(data) {
   currentDay.textContent = data.name
   var currentDayStore = data.name
 
-
   //current moment js data
   var today = moment();
   $(".current-date").text(today.format('(l)'));
@@ -120,8 +119,8 @@ function loadCurrentWeather(data) {
   var buttonOneStore = data.name
 
   // provides overcast status
-  currentIcon.textContent = data.weather[0].description
-  currentIconStore = data.weather[0].description
+  currentIcon.src = 'http://openweathermap.org/img/wn/' + data.weather[0].icon + '@2x.png'
+  currentIconStore = 'http://openweathermap.org/img/wn/' + data.weather[0].icon + '@2x.png'
 
   // declaring lat and lon from previous API call
   var latIn = data.coord.lat
@@ -177,7 +176,6 @@ function getFiveDayApi(fiveDayApi) {
       return response.json();
     })
     .then(function (data) {
-      console.log(data)
 
       loadFiveDay(data)
 
@@ -198,8 +196,9 @@ function loadFiveDay(data) {
   let dayOneDateStore = dayOneF
 
   //day1 icon
-  dayOneIcon.textContent = data.list[0].weather[0].description
-  let dayOneIconStore = data.list[0].weather[0].description
+  dayOneIcon.src = 'http://openweathermap.org/img/wn/' + data.list[0].weather[0].icon + '@2x.png'
+  dayOneIconStore = 'http://openweathermap.org/img/wn/' + data.list[0].weather[0].icon + '@2x.png'
+  console.log(dayOneIconStore)
   dayOneTemp = data.list[0].main.temp
   var dayOneFTemp = Math.round(((dayOneTemp - 273.15) * 9 / 5) + 32)
 
@@ -222,8 +221,8 @@ function loadFiveDay(data) {
   let dayTwoDateStore = dayTwoF
 
   //day2 icon
-  dayTwoIcon.textContent = data.list[8].weather[0].description
-  let dayTwoIconStore = data.list[8].weather[0].description
+  dayTwoIcon.src = 'http://openweathermap.org/img/wn/' + data.list[8].weather[0].icon + '@2x.png'
+  let dayTwoIconStore = 'http://openweathermap.org/img/wn/' + data.list[8].weather[0].icon + '@2x.png'
   dayTwoTemp = data.list[8].main.temp
   var dayTwoFTemp = Math.round(((dayTwoTemp - 273.15) * 9 / 5) + 32)
 
@@ -246,8 +245,8 @@ function loadFiveDay(data) {
   let dayThreeDateStore = dayThreeF
 
   //day3 icon
-  dayThreeIcon.textContent = data.list[16].weather[0].description
-  let dayThreeIconStore = data.list[16].weather[0].description
+  dayThreeIcon.src = 'http://openweathermap.org/img/wn/' + data.list[16].weather[0].icon + '@2x.png'
+  let dayThreeIconStore = 'http://openweathermap.org/img/wn/' + data.list[16].weather[0].icon + '@2x.png'
   dayThreeTemp = data.list[16].main.temp
   var dayThreeFTemp = Math.round(((dayThreeTemp - 273.15) * 9 / 5) + 32)
 
@@ -270,8 +269,8 @@ function loadFiveDay(data) {
   let dayFourDateStore = dayFourF
 
   //day4 icon
-  dayFourIcon.textContent = data.list[24].weather[0].description
-  let dayFourIconStore = data.list[24].weather[0].description
+  dayFourIcon.src = 'http://openweathermap.org/img/wn/' + data.list[24].weather[0].icon + '@2x.png'
+  let dayFourIconStore = 'http://openweathermap.org/img/wn/' + data.list[24].weather[0].icon + '@2x.png'
   dayFourTemp = data.list[24].main.temp
   var dayFourFTemp = Math.round(((dayFourTemp - 273.15) * 9 / 5) + 32)
 
@@ -294,8 +293,8 @@ function loadFiveDay(data) {
   let dayFiveDateStore = dayFiveF
 
   //day5 icon
-  dayFiveIcon.textContent = data.list[32].weather[0].description
-  dayFiveIconStore = data.list[32].weather[0].description
+  dayFiveIcon.src = 'http://openweathermap.org/img/wn/' + data.list[32].weather[0].icon + '@2x.png'
+  dayFiveIconStore = 'http://openweathermap.org/img/wn/' + data.list[32].weather[0].icon + '@2x.png'
   dayFiveTemp = data.list[32].main.temp
   var dayFiveFTemp = Math.round(((dayFiveTemp - 273.15) * 9 / 5) + 32)
 
@@ -312,11 +311,11 @@ function loadFiveDay(data) {
   let buttonOneStore = data.city.name
 
   setFiveDayStorage(dayOneDateStore, dayOneIconStore, dayOneTempStore, dayOneWindStore, dayOneHumStore,
-    dayTwoDateStore, dayTwoIconStore, dayTwoTempStore, dayTwoWindStore, dayTwoHumStore,
-    dayThreeDateStore, dayThreeIconStore, dayThreeTempStore, dayThreeWindStore, dayThreeHumStore,
-    dayFourDateStore, dayFourIconStore, dayFourTempStore, dayFourWindStore, dayFourHumStore,
-    dayFiveDateStore, dayFiveIconStore, dayFiveTempStore, dayFiveWindStore, dayFiveHumStore,
-    buttonOneStore
+                    dayTwoDateStore, dayTwoIconStore, dayTwoTempStore, dayTwoWindStore, dayTwoHumStore,
+                    dayThreeDateStore, dayThreeIconStore, dayThreeTempStore, dayThreeWindStore, dayThreeHumStore,
+                    dayFourDateStore, dayFourIconStore, dayFourTempStore, dayFourWindStore, dayFourHumStore,
+                    dayFiveDateStore, dayFiveIconStore, dayFiveTempStore, dayFiveWindStore, dayFiveHumStore,
+                    buttonOneStore
   )
 }
 
@@ -364,35 +363,35 @@ function getStorage() {
   currentWind.textContent = storedCurrent[2]
   currentHumidity.textContent = storedCurrent[3]
   buttonOne.textContent = storedCurrent[4]
-  currentIcon.textContent = storedCurrent[5]
+  currentIcon.src = storedCurrent[5]
 
   // re-renders five day weather data
   dayOne.textContent = storedFiveDay[0]
-  dayOneIcon.textContent = storedFiveDay[1]
+  dayOneIcon.src = storedFiveDay[1]
   dayOneTempF.textContent = storedFiveDay[2]
   dayOneWind.textContent = storedFiveDay[3]
   dayOneHumidity.textContent = storedFiveDay[4]
 
   dayTwo.textContent = storedFiveDay[5]
-  dayTwoIcon.textContent = storedFiveDay[6]
+  dayTwoIcon.src = storedFiveDay[6]
   dayTwoTempF.textContent = storedFiveDay[7]
   dayTwoWind.textContent = storedFiveDay[8]
   dayTwoHumidity.textContent = storedFiveDay[9]
 
   dayThree.textContent = storedFiveDay[10]
-  dayThreeIcon.textContent = storedFiveDay[11]
+  dayThreeIcon.src = storedFiveDay[11]
   dayThreeTempF.textContent = storedFiveDay[12]
   dayThreeWind.textContent = storedFiveDay[13]
   dayThreeHumidity.textContent = storedFiveDay[14]
 
   dayFour.textContent = storedFiveDay[15]
-  dayFourIcon.textContent = storedFiveDay[16]
+  dayFourIcon.src = storedFiveDay[16]
   dayFourTempF.textContent = storedFiveDay[17]
   dayFourWind.textContent = storedFiveDay[18]
   dayFourHumidity.textContent = storedFiveDay[19]
 
   dayFive.textContent = storedFiveDay[20]
-  dayFiveIcon.textContent = storedFiveDay[21]
+  dayFiveIcon.src = storedFiveDay[21]
   dayFiveTempF.textContent = storedFiveDay[22]
   dayFiveWind.textContent = storedFiveDay[23]
   dayFiveHumidity.textContent = storedFiveDay[24]
