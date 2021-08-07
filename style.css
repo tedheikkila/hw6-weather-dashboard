@@ -61,7 +61,6 @@ body {
 
 }
 
-
 .previous-weather {
     text-align:center; 
     position:relative;
@@ -109,9 +108,8 @@ body {
 
 /* hides initial display on reload events */
 .five-day {
-    display:none;
+    display: none
 }
-
 
 .five-day-label {
     margin-top:20px;
