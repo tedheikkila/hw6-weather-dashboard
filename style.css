@@ -85,6 +85,10 @@ body {
     padding:15px;
 }
 
+#search-button:hover, #search-btn-one:hover, #uv-btn:hover  {
+    background-color: rgb(211, 43, 226);
+}
+
 .current-label {
     text-align: center;
 }
@@ -108,7 +112,8 @@ body {
 
 /* hides initial display on reload events */
 .five-day {
-    display: none
+    display: none;
+    text-align: center;
 }
 
 .five-day-label {
@@ -122,10 +127,8 @@ body {
 }
 
 /* weather status icons */
-.day1-icon, .day2-icon, .day3-icon, .day4-icon, .day5-icon {
-    margin-top: 10px;
-    margin-bottom: 30px;
-    text-decoration: underline;
+img {
+    filter:hue-rotate(300deg);
 }
 
 .card-deck {
